@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            platforms:
+                - linux/amd64
+        ports:
+            - "3001:3001"
+        environment:
+            - PORT=3001
+            - NODE_ENV=production
+            - API_KEY=abc1234
+        volumes:
+            - .:/usr/src/app
+        command: ["node", "dist/server.js"]
