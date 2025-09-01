@@ -18,6 +18,14 @@ RUN apt-get update && apt-get install gnupg wget -y && \
 RUN npm install -g pnpm
 RUN alias npm=pnpm
 
+# create user
+RUN useradd -m app
+
+# set permissions
+RUN chown -R app:app /usr/src/app
+
+USER app
+WORKDIR /usr/src/app
 
   # Copy package.json and package-lock.json (if present)
 # to leverage Docker cache for dependency installation
